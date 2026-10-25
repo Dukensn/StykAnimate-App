@@ -1,0 +1,43 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+@font-face { font-family: "Comic Neue"; font-weight: 700; src: url("assets/fonts/ComicNeue-Bold.ttf"); }
+@font-face { font-family: "Caveat"; font-weight: 400 700; src: url("assets/fonts/Caveat.ttf"); }
+html,body{margin:0;background:#000} canvas{display:block}
+</style></head><body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script src="assets/js/core.js"></script><script src="assets/js/chars.js"></script><script src="assets/js/props.js"></script><script src="assets/js/fx.js"></script>
+<script>
+window.drawThumb = function () {
+  const { PAL, G } = F; const ctx = document.getElementById('c').getContext('2d');
+  G.t = 0.3; G.boil = 3; G.frame = 9;
+  ctx.fillStyle = '#0b0c10'; ctx.fillRect(0, 0, 1920, 1080);
+  // room behind, dimmed
+  ctx.save(); ctx.translate(960, 540); ctx.scale(1.25, 1.25); ctx.translate(-700, -560);
+  Pr.theoRoom(ctx, { clock: '3:17', lamp: 0, dark: 0.45 }); ctx.restore();
+  // Pride looming behind, right side
+  C.drawPride(ctx, 1640, 1240, { s: 3.0, grin: 1.4, look: -18 });
+  // phone glow + Theo close
+  const g = ctx.createRadialGradient(1180, 950, 40, 1180, 800, 700);
+  g.addColorStop(0, 'rgba(120,160,255,0.45)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 1920, 1080);
+  ctx.save(); ctx.translate(1180, 650);
+  ctx.beginPath(); ctx.moveTo(-460, 520); ctx.bezierCurveTo(-430, 300, -220, 270, 0, 270); ctx.bezierCurveTo(220, 270, 430, 300, 460, 520); ctx.closePath();
+  C.fillOutline(ctx, PAL.hoodie, 4);
+  C.drawHead(ctx, 0, -10, 250, { eyes: 'teary', look: [-0.5, 0.7], brow: 1, browUp: 0.8, mouth: 'wobble', tear: 0.9, blush: 0.4 }, { seed: 17, lit: 1, noBlink: true });
+  ctx.restore();
+  // phone in hand, screen toward camera: "hi mom" + glowing send
+  Pr.phone(ctx, 560, 650, 0.78, -0.1, { msgs: [{ who: 'me', text: "stop telling me what i can't do." }, { who: 'mom', text: 'just tell me you ate.' }], header: 'Mom', status: '', input: 'hi mom', caret: true, kb: false, sendHot: 1, clock: '3:17' });
+  // title text
+  ctx.save(); ctx.textBaseline = 'alphabetic';
+  ctx.font = '700 168px "Comic Neue"'; ctx.lineJoin = 'round';
+  ctx.lineWidth = 18; ctx.strokeStyle = '#000'; ctx.fillStyle = '#f6f4ee';
+  ctx.strokeText('214 DRAFTS.', 70, 230); ctx.fillText('214 DRAFTS.', 70, 230);
+  ctx.fillStyle = PAL.amber; ctx.shadowColor = PAL.amber; ctx.shadowBlur = 30;
+  ctx.strokeText('0 SENT.', 70, 400); ctx.fillText('0 SENT.', 70, 400);
+  ctx.restore();
+  // vignette
+  const vg = ctx.createRadialGradient(960, 540, 400, 960, 540, 1150);
+  vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,0.6)');
+  ctx.fillStyle = vg; ctx.fillRect(0, 0, 1920, 1080);
+};
+</script></body></html>
