@@ -1,0 +1,31 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+@font-face { font-family: "Comic Neue"; font-weight: 700; src: url("assets/fonts/ComicNeue-Bold.ttf"); }
+@font-face { font-family: "Caveat"; font-weight: 400 700; src: url("assets/fonts/Caveat.ttf"); }
+html,body{margin:0;background:#000} canvas{display:block}
+</style></head><body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script src="assets/js/core.js"></script><script src="assets/js/chars.js"></script><script src="assets/js/props.js"></script><script src="assets/js/fx.js"></script><script src="assets/js/sets2.js"></script><script src="assets/js/sets3.js"></script>
+<script>
+window.drawThumb = function () {
+  const { PAL, G } = F; const ctx = document.getElementById('c').getContext('2d');
+  G.t = 0.4; G.boil = 3; G.frame = 9;
+  ctx.save(); ctx.translate(960, 540); ctx.scale(1.25, 1.25); ctx.translate(-900, -560);
+  Pr.kitchen(ctx, { mode: 'night', lamp: 1 }); ctx.restore();
+  ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.fillRect(0, 0, 1920, 1080);
+  ctx.save(); ctx.translate(1420, 0);
+  ctx.beginPath(); ctx.moveTo(-430, 1100); ctx.bezierCurveTo(-400, 880, -200, 840, 0, 840); ctx.bezierCurveTo(200, 840, 400, 880, 430, 1100); ctx.closePath(); C.fillOutline(ctx, '#3e4f66', 4);
+  ctx.restore();
+  C.drawHead(ctx, 1420, 640, 250, { eyes: 'teary', look: [-0.6, 0.5], brow: 1, browUp: 0.7, mouth: 'wobble', tear: 1, blush: 0.5 }, { kind: 'dadGrey', seed: 31, noBlink: true });
+  S3.note(ctx, 640, 760, 720, 470, -0.08, ['have a great day,', 'old bean.', 'i kept every one.'], { size: 74, ink: '#5a3a8a', doodle: 'dad' });
+  ctx.save(); ctx.textBaseline = 'alphabetic'; ctx.lineJoin = 'round';
+  ctx.font = '700 160px "Comic Neue"'; ctx.lineWidth = 18; ctx.strokeStyle = '#000'; ctx.fillStyle = '#f6f4ee';
+  ctx.strokeText('4,512 NOTES.', 70, 205); ctx.fillText('4,512 NOTES.', 70, 205);
+  ctx.fillStyle = S3.YEL; ctx.shadowColor = '#e8b020'; ctx.shadowBlur = 26;
+  ctx.strokeText('1 REPLY.', 70, 370); ctx.fillText('1 REPLY.', 70, 370);
+  ctx.restore();
+  const vg = ctx.createRadialGradient(960, 540, 400, 960, 540, 1150);
+  vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,0.55)');
+  ctx.fillStyle = vg; ctx.fillRect(0, 0, 1920, 1080);
+};
+</script></body></html>

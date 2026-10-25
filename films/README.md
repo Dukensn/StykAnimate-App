@@ -8,13 +8,14 @@ project: a single canvas drawn from code, so every frame is a function of time a
 | --- | --- | --- | --- |
 | UNSENT | 4:06 | `unsent/` | amber (Pride) |
 | AGAIN | 4:08 | `again/` | red thread |
+| LITTLE BEAN | 4:04 | `little-bean/` | note yellow |
 
 ## Layout
 
 - `<film>/index.html` – the composition (1920×1080, 30 fps); `thumb.html` draws the YouTube thumbnail.
 - `<film>/assets/js/` – `core.js` (noise, easing, sketchy lines), `chars.js` (character rig and looks),
   `props.js` (rooms, phone UI), `fx.js` (captions, HUD, grain), `sets2.js` (AGAIN's park, sketchbook, thread),
-  `film.js` (the shot list and timing).
+  `sets3.js` (LITTLE BEAN's notes, lunchbox, school, street and car), `film.js` (the shot list and timing).
 - `<film>/tools/` – `score*.py` writes the music as MIDI against the picture's cue times; `mix*.py` adds
   sound effects and writes the final track. `unsent/tools/events.json` holds the typing times.
 - `tools/` – Playwright helpers: `still.cjs` (frames at given times), `thumb.cjs` (thumbnail), `events.cjs`.
@@ -25,7 +26,7 @@ project: a single canvas drawn from code, so every frame is a function of time a
 Requires Node 22+, Python 3 with `mido` and `numpy`, FluidSynth with the FluidR3 GM soundfont, and ffmpeg.
 
 ```sh
-cd films/unsent                      # or films/again (score2.py / mix2.py)
+cd films/unsent                      # or films/again (score2.py / mix2.py), films/little-bean (score3.py / mix3.py)
 python3 tools/score.py score.mid
 fluidsynth -ni -g 0.6 -r 48000 -o synth.reverb.room-size=0.82 -o synth.reverb.level=0.75 \
   -o synth.chorus.active=0 -F score.wav /usr/share/sounds/sf2/FluidR3_GM.sf2 score.mid
@@ -41,5 +42,5 @@ Thumbnail: `node ../tools/thumb.cjs . thumb.png`.
 
 ## Starting a new film
 
-Copy `again/` (the most complete rig), keep `core.js`, `chars.js`, `props.js`, `fx.js`, and rewrite
+Copy `little-bean/` (the most complete rig; larger captions, no letterbox), keep `core.js`, `chars.js`, `props.js`, `fx.js`, and rewrite
 `film.js` (shots and timing) and the score cues. Character looks live in the `LOOKS` table in `chars.js`.
