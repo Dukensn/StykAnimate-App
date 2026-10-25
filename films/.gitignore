@@ -1,0 +1,6 @@
+# generated: audio mixes, renders, HyperFrames caches
+*/assets/audio/*.wav
+*/renders/
+*/.hyperframes/
+*.mp4
+*.mid

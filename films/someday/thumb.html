@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+@font-face { font-family: "Comic Neue"; font-weight: 700; src: url("assets/fonts/ComicNeue-Bold.ttf"); }
+@font-face { font-family: "Caveat"; font-weight: 400 700; src: url("assets/fonts/Caveat.ttf"); }
+@font-face { font-family: "Inter"; font-weight: 100 900; src: url("assets/fonts/Inter.ttf"); }
+html,body{margin:0;background:#000} canvas{display:block}
+</style></head><body>
+<canvas id="c" width="1920" height="1080"></canvas>
+<script src="assets/js/core.js"></script><script src="assets/js/fx.js"></script><script src="assets/js/sil.js"></script><script src="assets/js/flat.js"></script>
+<script>
+window.drawThumb = function () {
+  const ctx = document.getElementById('c').getContext('2d');
+  F.G.t = 2.0; F.G.boil = 3; F.G.frame = 9;
+  ctx.save(); ctx.translate(960, 540); ctx.scale(1.15, 1.15); ctx.translate(-960, -600); FLAT.beach(ctx); ctx.restore();
+  const g = ctx.createLinearGradient(0, 0, 0, 1080); g.addColorStop(0, 'rgba(255,170,100,0.18)'); g.addColorStop(0.5, 'rgba(255,190,130,0.08)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, 1920, 1080);
+  FLAT.glow(ctx, 1450, 470, 420, 'rgba(255,220,170,0.8)');
+  SIL.sil(ctx, { kind: 'dad', x: 1080, y: 930, s: 1.9, face: 0.2, cane: 'R', armL: [0.2, 0.2], armR: [-0.3, -0.3], e: { eyes: 'teary', look: [0.3, -0.4], brow: 0.6, smile: true, tear: 0.7 }, noBlink: true });
+  SIL.sil(ctx, { kind: 'noah', x: 1420, y: 930, s: 1.9, face: -0.4, armL: [-0.9, -0.3], armR: [-0.1, -0.1], e: { eyes: 'happy', look: [-0.6, 0], smile: true }, noBlink: true });
+  ctx.save(); ctx.textBaseline = 'alphabetic'; ctx.lineJoin = 'round';
+  ctx.font = '900 190px Inter'; ctx.lineWidth = 20; ctx.strokeStyle = 'rgba(0,0,0,0.85)';
+  ctx.fillStyle = '#ffd34d'; ctx.strokeText('SOMEDAY.', 70, 250); ctx.fillText('SOMEDAY.', 70, 250);
+  ctx.font = '800 76px Inter'; ctx.fillStyle = '#ffffff'; ctx.lineWidth = 12;
+  ctx.strokeText('78 years. never saw the ocean.', 78, 360); ctx.fillText('78 years. never saw the ocean.', 78, 360);
+  ctx.restore();
+  const vg = ctx.createRadialGradient(960, 540, 400, 960, 540, 1150);
+  vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,0.5)');
+  ctx.fillStyle = vg; ctx.fillRect(0, 0, 1920, 1080);
+};
+</script></body></html>
