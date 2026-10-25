@@ -9,6 +9,7 @@ project: a single canvas drawn from code, so every frame is a function of time a
 | UNSENT | 4:06 | `unsent/` | amber (Pride) |
 | AGAIN | 4:08 | `again/` | red thread |
 | LITTLE BEAN | 4:04 | `little-bean/` | note yellow |
+| SOMEDAY | 4:08 | `someday/` | silhouette style: `sil.js` (characters) and `flat.js` (sets), serif cards |
 
 ## Layout
 
@@ -26,7 +27,7 @@ project: a single canvas drawn from code, so every frame is a function of time a
 Requires Node 22+, Python 3 with `mido` and `numpy`, FluidSynth with the FluidR3 GM soundfont, and ffmpeg.
 
 ```sh
-cd films/unsent                      # or films/again (score2.py / mix2.py), films/little-bean (score3.py / mix3.py)
+cd films/unsent                      # or films/again (score2/mix2), films/little-bean (score3/mix3), films/someday (score4/mix4)
 python3 tools/score.py score.mid
 fluidsynth -ni -g 0.6 -r 48000 -o synth.reverb.room-size=0.82 -o synth.reverb.level=0.75 \
   -o synth.chorus.active=0 -F score.wav /usr/share/sounds/sf2/FluidR3_GM.sf2 score.mid
